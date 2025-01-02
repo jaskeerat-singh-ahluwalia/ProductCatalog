@@ -12,50 +12,50 @@ import java.util.List;
  *
  */
 @RestController
-
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
     private ProductService service;
 
-    @PostMapping("/products")
+    @PostMapping
     public Product addProduct(@RequestBody Product product){
         return service.saveProduct(product);
     }
 
-    @GetMapping("/products")
+    @GetMapping
     public List<Product> findAllProducts(){
         return service.getProducts();
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public Product findProductById(@PathVariable int id){
         return service.getProductById(id);
     }
 
-    @GetMapping("/products/{category}")
+    @GetMapping("/category/{category}")
     public List<Product> getProductsByCategory(@PathVariable String category) {
         return service.getProductsByCategory(category);
     }
 
-    @PutMapping("/products/{id}")
+    @PutMapping("/{id}")
     public Product updateProduct(@PathVariable int id,@RequestBody Product product){
         return service.updateProduct(id,product);
     }
 
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable int id){
         return service.deleteProduct(id);
     }
 
-    @GetMapping("/products/category/{category}/price/{price}")
+    @GetMapping("/category/{category}/price/{price}")
     public List<Product> getProductsByCategoryAndPrice(
             @PathVariable String category,
             @PathVariable double price) {
         return service.getProductsByCategoryAndPrice(category, price);
     }
 
-    @GetMapping("/products/price/{price}")
+    @GetMapping("/price/{price}")
     public List<Product> getProductsByPrice(@PathVariable double price) {
         return service.getProductsByPrice(price);
     }

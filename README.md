@@ -43,7 +43,7 @@ CREATE A NEW REPO IN GITLAB NAMED "product_api_assessment" and push the service 
       GET  /products/category/{category}/price/{price} 
         - search products by category and price limit given( all products of category within the given price)
 
-*  GET  /products/category
+*  GET  /products/category/{category}
    - search products by category and  return the products
 
 

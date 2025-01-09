@@ -1,10 +1,11 @@
-package com.example.demo.service;
+package com.fyndna.demo.service;
 
-import com.example.demo.repository.ProductRepository;
+import com.fyndna.demo.policy.ProductBusinessPolicy;
+import com.fyndna.demo.repository.ProductRepository;
+import com.fyndna.infra.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.entity.Product;
-import com.example.demo.repository.ProductRepository;
+import com.fyndna.demo.entity.Product;
 
 import java.util.List;
 
@@ -13,10 +14,15 @@ import java.util.List;
  * @author jaskeeratsingh
  */
 @Service
-public class ProductService {
+public class ProductService extends AbstractService<ProductRepository, Product, Integer> {
 
     @Autowired
     private ProductRepository repository;
+
+    public ProductService(ProductRepository repository, ProductBusinessPolicy policy) {
+        super(repository,policy);
+        this.repository = repository;
+    }
 
     public Product saveProduct(Product product){
         return repository.save(product);
